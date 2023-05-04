@@ -6,7 +6,7 @@ ADD payloads payloads
 WORKDIR /payloads
 RUN for f in *.java ; do sed -i -e "s/127.0.0.1/${PAYLOAD_IP}/" "$f"; javac "$f" ; done
 
-FROM nginx
+FROM nginx:1-bullseye
 COPY --from=builder /payloads/*.class /tmp/
 
 EXPOSE 8888
